@@ -64,6 +64,21 @@ img {
   letter-spacing: 0.64px;
   transition: 250ms ease;
 }
+button {
+  border: none;
+  width: 125px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #4e75ff;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  /* 150% */
+  letter-spacing: 0.64px;
+  transition: 250ms ease;
+}
 
 button:hover {
   background-color: #6c8cff;
