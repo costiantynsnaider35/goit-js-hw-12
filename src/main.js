@@ -71,12 +71,12 @@ async function handleClick(event) {
       message: "We're sorry, there are no more posts to load",
     });
   }
-  const newPage = await fetchImages(inpVal, page);
-  renderImages(newPage, galList);
-  const firstCard = document.querySelector('.gallery li');
-  const cardHeight = firstCard.getBoundingClientRect().height;
+  const newWebpage = await fetchImages(inpVal, page);
+  renderImages(newWebpage, galList);
+  const firstPic = document.querySelector('.gallery li');
+  const picHeight = firstPic.getBoundingClientRect().height;
   window.scrollBy({
-    top: cardHeight * 2,
+    top: picHeight * 2,
     behavior: 'smooth',
   });
 }
