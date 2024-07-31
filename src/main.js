@@ -2,35 +2,34 @@ import { fetchImages } from './js/pixabay-api';
 import { renderImages } from './js/render-functions';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import axios from 'axios';
 
-const form = document.querySelector('.form');
-const input = document.querySelector('.input');
-const galleryList = document.querySelector('.gallery');
+const formSearch = document.querySelector('.form');
+const inputSearch = document.querySelector('.input');
+const galList = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
-const fetchImagesBtn = document.querySelector('.btn');
-let inputValue;
+const loadMoreBtn = document.querySelector('.load-more');
+let inpVal;
 let page = 1;
 let limit = 15;
 let totalPages = 0;
 
-function handleSubmit(event) {
-  fetchImagesBtn.classList.add('visually-hidden');
+function handleSub(event) {
+  loadMoreBtn.classList.add('visually-hidden');
   event.preventDefault();
 
-  galleryList.innerHTML = '';
+  galList.innerHTML = '';
   loader.classList.remove('visually-hidden');
 
-  inputValue = input.value.trim();
+  inpVal = inputSearch.value.trim();
 
-  if (inputValue === '') {
+  if (inpVal === '') {
     loader.classList.add('visually-hidden');
     return;
   }
 
   page = 1;
 
-  fetchImages(inputValue, page)
+  fetchImages(inpVal, page)
     .then(images => {
       totalPages = Math.ceil(images.totalHits / limit);
       loader.classList.add('visually-hidden');
@@ -45,8 +44,8 @@ function handleSubmit(event) {
         });
       } else {
         loader.classList.add('visually-hidden');
-        fetchImagesBtn.classList.remove('visually-hidden');
-        renderImages(images, galleryList);
+        loadMoreBtn.classList.remove('visually-hidden');
+        renderImages(images, galList);
       }
     })
     .catch(error => {
@@ -60,20 +59,20 @@ function handleSubmit(event) {
       loader.classList.add('visually-hidden');
     });
 
-  form.reset();
+  formSearch.reset();
 }
 
 async function handleClick(event) {
   page += 1;
   if (page > totalPages) {
-    fetchImagesBtn.classList.add('visually-hidden');
+    loadMoreBtn.classList.add('visually-hidden');
     return iziToast.error({
       position: 'topRight',
       message: "We're sorry, there are no more posts to load",
     });
   }
-  const newPage = await fetchImages(inputValue, page);
-  renderImages(newPage, galleryList);
+  const newPage = await fetchImages(inpVal, page);
+  renderImages(newPage, galList);
   const firstCard = document.querySelector('.gallery li');
   const cardHeight = firstCard.getBoundingClientRect().height;
   window.scrollBy({
@@ -82,5 +81,5 @@ async function handleClick(event) {
   });
 }
 
-form.addEventListener('submit', handleSubmit);
-fetchImagesBtn.addEventListener('click', handleClick);
+formSearch.addEventListener('submit', handleSub);
+loadMoreBtn.addEventListener('click', handleClick);
