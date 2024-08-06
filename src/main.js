@@ -51,6 +51,13 @@ async function handleSubmit(event) {
   } catch (error) {
     console.error(error);
     loader.classList.add('visually-hidden');
+    iziToast.error({
+      maxWidth: '370px',
+      position: 'topRight',
+      messageColor: 'white',
+      backgroundColor: 'red',
+      message: 'Something went wrong. Please try again later.',
+    });
   }
 
   formSearch.reset();
@@ -85,6 +92,13 @@ async function handleLoadMore() {
   } catch (error) {
     console.error(error);
     loader.classList.add('visually-hidden');
+    iziToast.error({
+      maxWidth: '370px',
+      position: 'topRight',
+      messageColor: 'white',
+      backgroundColor: 'red',
+      message: 'Something went wrong. Please try again later.',
+    });
   }
 }
 
