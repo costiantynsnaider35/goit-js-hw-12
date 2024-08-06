@@ -50,7 +50,7 @@ img {
   background-color: transparent;
 }
 
-.button {
+.search-button {
   border: none;
   width: 86px;
   padding: 8px 16px;
@@ -64,10 +64,10 @@ img {
   letter-spacing: 0.64px;
   transition: 250ms ease;
 }
-.button:hover {
+.search-button:hover {
   background-color: #6c8cff;
 }
-.load-more {
+.more-button {
   border: none;
   display: inline-flex;
   padding: 8px 16px;
@@ -82,9 +82,10 @@ img {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.64px;
+  transition: 250ms ease;
 }
 
-.load-more:hover {
+.more-button:hover {
   background-color: #6c8cff;
 }
 
@@ -138,30 +139,30 @@ img {
 .loader {
   width: 48px;
   height: 48px;
-  border: 3px dotted #fff;
-  border-style: solid solid dotted dotted;
-  border-radius: 50%;
-  display: inline-block;
+  display: block;
+  margin: 15px auto;
   position: relative;
+  color: #fff;
   box-sizing: border-box;
-  animation: rotation 2s linear infinite;
+  animation: rotation 1s linear infinite;
 }
-.loader::after {
+.loader::after,
+.loader::before {
   content: '';
   box-sizing: border-box;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  border: 3px dotted #ff3d00;
-  border-style: solid solid dotted;
   width: 24px;
   height: 24px;
+  top: 50%;
+  left: 50%;
+  transform: scale(0.5) translate(0, 0);
+  background-color: #fff;
   border-radius: 50%;
-  animation: rotationBack 1s linear infinite;
-  transform-origin: center center;
+  animation: animloader 1s infinite ease-in-out;
+}
+.loader::before {
+  background-color: #ff3d00;
+  transform: scale(0.5) translate(-48px, -48px);
 }
 
 @keyframes rotation {
@@ -172,12 +173,9 @@ img {
     transform: rotate(360deg);
   }
 }
-@keyframes rotationBack {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
+@keyframes animloader {
+  50% {
+    transform: scale(1) translate(-50%, -50%);
   }
 }
 
@@ -186,11 +184,8 @@ img {
   width: 1px;
   height: 1px;
   margin: -1px;
-  border: 0;
   padding: 0;
-
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
   overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }

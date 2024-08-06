@@ -1,7 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-export function renderImages(images, galList) {
+export function renderImg(images, imgGallery) {
   const markup = images.hits
     .map(
       image => `
@@ -19,11 +19,11 @@ export function renderImages(images, galList) {
     )
     .join('');
 
-  galList.insertAdjacentHTML('beforeend', markup);
+  imgGallery.insertAdjacentHTML('beforeend', markup);
 
-  let galNewBox = new SimpleLightbox('.gallery a', {
-    captData: 'alt',
-    capDelay: 250,
+  let imgGallerySl = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
   });
-  galNewBox.refresh();
+  imgGallerySl.refresh();
 }
