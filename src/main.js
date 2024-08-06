@@ -68,7 +68,7 @@ async function handleLoadMore() {
     const imgCard = document.querySelector('.gallery li');
     const cardHeight = imgCard.getBoundingClientRect().height;
     window.scrollBy({
-      top: cardHeight * 5,
+      top: cardHeight * 2,
       behavior: 'smooth',
     });
 
